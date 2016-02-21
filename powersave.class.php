@@ -91,7 +91,7 @@ class powersave {
 
 	private function _get_server_players($host,$port) {
 		$serverData = new SourceServer($host,$port);
-		$serverInfo = array('numberOfPlayers'=>0);
+		$error_return = array('numberOfPlayers'=>0);
 		$retry_count = 0;
 		$retry = 10;
 		$players = 0;
@@ -106,7 +106,7 @@ class powersave {
 				usleep(200000);
 				if ($retry_count >= $retry) {
 					$this->print_cli('error', " Givingup on ".$host.":".$port);
-					return False;
+					return $error_return;
 				}
 			}
 		}
